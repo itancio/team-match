@@ -99,11 +99,11 @@ export async function POST(req) {
       let resultString = ''
       results.matches.forEach((match) => {
         resultString += `
-        Returned Results:
-        Professor: ${match.id}
-        Review: ${match.metadata.stars}
-        Subject: ${match.metadata.subject}
-        Stars: ${match.metadata.stars}
+        Returned Results:\n
+        Professor: ${match.id}\n
+        Review: ${match.metadata.stars}\n
+        Subject: ${match.metadata.subject}\n
+        Stars: ${match.metadata.stars}\n
         \n\n`
       })
       
@@ -121,6 +121,8 @@ export async function POST(req) {
           ],
           model: 'gpt-4o-mini',
           stream: true,
+          temperature: 0.3,
+          max_tokens: 700,
         })
 
       // Step 7: Set up streaming response

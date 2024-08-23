@@ -1,11 +1,12 @@
 'use client'
 
-import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import {
   Box,
   Button,
   Container,
+  Image,
+  Grid,
   Stack,
   TextField,
   Typography,
@@ -13,11 +14,26 @@ import {
 import SendIcon from '@mui/icons-material/Send';
 
 
+// Color Palettes
+const cyan = '#aceef3'
+const coral = '#ff7077'
+const rose = '#ffe9e4'
+const orange = '#ffb067'
+const darkBlue = '#1280b3'
+const lightGray = '#f7f7f8'
+const gray = '#ebeced'
+const torquoise = '#33877c'
+const green = '#41837B'
+
+
+
 export default function Home() {
+  // const {isSignedIn, user} =useUser()
+  const username = ""
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "Hi, I'm the Rate My Professor support assistant! How can I help you today?"
+      content: `Hi, I'm the Rate My Professor support assistant! How can I help you today${username}?`
     }
   ]);
   const messagesEndRef = useRef(null);
@@ -68,8 +84,6 @@ export default function Home() {
 
             const text = decoder.decode(value || new Uint8Array(), {stream: true})    // Decode the text
 
-            console.log("text: ", text)
-
             setMessages( (messages) => {
               let lastMessage = messages[messages.length - 1]   // Get the last message (assistant's placeholder)
               let otherMessages = messages.slice(0, messages.length - 1)    // Get all other messages
@@ -89,69 +103,94 @@ export default function Home() {
       width:'100vw',
       height:'100vh',
       display:'flex ',
-      flexDirection:'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'lightgray',
+      backgroundColor: green,
     }}
     >
-      {/* This is the chat interface */}
-      <Stack
-        p={2}
-        spacing={3}
-        direction='column'
-        width='500px'
-        height='800px'
-        border='1px solid #fff'
-        borderRadius='25px'
-        backgroundColor='white'
-      >
-        <Stack
-          direction='column'
-          spacing={2}
-          flexGrow={2}
-          overflow='auto'
-          maxHeight='100%'
-        >
-          {
-            messages?.map( (message, index) => (
-              <Box
-                p={2}
-                key={index}
-                display='flex'
-                justifyContent={message.role === 'assistant'? 'flex-start' : 'flex-end'}
-                color={message.role === 'assistant'? 'black' : 'white'}
-              >
-                <Box
-                  bgcolor={message.role === 'assistant' ? 'primary.main' : 'secondary.main'}
-                  color='white'
-                  borderRadius={16}
-                  p={3}
-                >
-                  {message.content}  
-                </Box>
-              </Box>
-            ))
-          }
-        </Stack>
-        <Stack direction='row' >
-          <TextField
-            value={message}
-            label={<Typography color='lightgray'>Enter your message here...</Typography>}
-            fullWidth
-            onChange={ (e) => setMessage(e.target.value) }
-            onKeyDown={handleKeyPress}
-          />
-          <Button 
-            sx={{borderRadius: 20}} 
-            disabled={!message.trim()} 
-            variant='text' onClick={sendMessage} 
-            endIcon={<SendIcon/>} 
+      <Grid container justifyContent='center' padding={20}>
+        <Grid item>
+          <Stack direction='column' alignItems='center'>
+            <Typography variant='h2'color={coral}>PERFECT MATCHING</Typography>
+            <Typography variant='h2'>with the right mentor</Typography>
+            <Typography padding={1}>with the right mentor</Typography>
+            <Box
+              direction='column'
+              component='img'
+              sx={{
+                maxHeight: 260,
+                maxWidth: 420,
+                borderRadius: 8,
+                my: 3,
+              }}
+              src='/images/prof.png'
+            />
+          </Stack>
+        </Grid>
+
+        {/* This is the chat interface */}
+        <Grid item>
+          <Stack
+            p={1}
+            spacing={2}
+            direction='column'
+            width='22rem'
+            height='40rem'
+            // border='1px solid #fff'
+            borderRadius='16px'
+            backgroundColor='white'
+            boxShadow={2}
           >
-            send
-          </Button>
-        </Stack>
-      </Stack>
+            <Stack
+              direction='column'
+              flexGrow={2}
+              overflow='auto'
+              maxHeight='100%'
+            >
+
+              {
+                messages?.map( (message, index) => (
+                  <Box
+                    p={1}
+                    key={index}
+                    display='flex'
+                    justifyContent={message.role === 'assistant'? 'flex-start' : 'flex-end'}
+                    color={message.role === 'assistant'? 'black' : 'white'}
+                  >
+                    <Box
+                      bgcolor={message.role === 'assistant' ? lightGray : gray}
+                      color={message.role === 'assistant' ? 'white' : 'black'}
+                      borderRadius={3}
+                      p={2}
+                      fontSize={12}
+                      maxWidth='92%'
+                    >
+                      {message.content}  
+                    </Box>
+                  </Box>
+                ))
+              }
+            </Stack>
+            <Stack direction='row' spacing={1}>
+              <TextField
+                value={message}
+                label={<Typography color='lightgray'>Enter message</Typography>}
+                fullWidth
+                inputProps={{style: {fontSize: 12}}}     // set input text size
+                onChange={ (e) => setMessage(e.target.value) }
+                onKeyDown={handleKeyPress}
+              />
+              <Button
+                disabled={!message.trim()} 
+                variant='text'
+                sx={{color: coral}}
+                onClick={sendMessage} 
+                endIcon={<SendIcon/>} 
+              >
+                send
+              </Button>
+            </Stack>
+          </Stack>
+        </Grid>
+      </Grid>
     </Container>
   );
 }
