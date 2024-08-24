@@ -1,0 +1,350 @@
+{
+    "users": [
+      {
+        "name": "Alice Johnson",
+        "location": "New York, NY",
+        "tech_stack": [
+          {"name": "Python", "years": 5},
+          {"name": "Django", "years": 3},
+          {"name": "JavaScript", "years": 4}
+        ],
+        "interests": "AI and Machine Learning",
+        "goal": "Develop AI-driven web applications",
+        "idea": "Create a platform for personalized AI tutors"
+      },
+      {
+        "name": "Bob Smith",
+        "location": "San Francisco, CA",
+        "tech_stack": [
+          {"name": "JavaScript", "years": 6},
+          {"name": "React", "years": 4},
+          {"name": "Node.js", "years": 5}
+        ],
+        "interests": "Front-End Development",
+        "goal": "Build responsive and dynamic user interfaces",
+        "idea": "Develop a real-time collaborative code editor"
+      },
+      {
+        "name": "Carol White",
+        "location": "Austin, TX",
+        "tech_stack": [
+          {"name": "Java", "years": 7},
+          {"name": "Spring Boot", "years": 5},
+          {"name": "Kotlin", "years": 3}
+        ],
+        "interests": "Back-End Development",
+        "goal": "Optimize and secure server-side logic",
+        "idea": "Build a microservices-based architecture for e-commerce"
+      },
+      {
+        "name": "David Lee",
+        "location": "Seattle, WA",
+        "tech_stack": [
+          {"name": "C#", "years": 6},
+          {"name": ".NET", "years": 5},
+          {"name": "Azure", "years": 4}
+        ],
+        "interests": "Cloud Computing",
+        "goal": "Create scalable cloud applications",
+        "idea": "Develop a cloud-based task management system"
+      },
+      {
+        "name": "Emily Davis",
+        "location": "Boston, MA",
+        "tech_stack": [
+          {"name": "Ruby", "years": 4},
+          {"name": "Rails", "years": 3},
+          {"name": "JavaScript", "years": 5}
+        ],
+        "interests": "Full-Stack Development",
+        "goal": "Deliver end-to-end web solutions",
+        "idea": "Create an AI-driven content management system"
+      },
+      {
+        "name": "Franklin Green",
+        "location": "Chicago, IL",
+        "tech_stack": [
+          {"name": "Go", "years": 3},
+          {"name": "Docker", "years": 2},
+          {"name": "Kubernetes", "years": 2}
+        ],
+        "interests": "DevOps",
+        "goal": "Automate and streamline deployment processes",
+        "idea": "Build a CI/CD pipeline for microservices"
+      },
+      {
+        "name": "Grace Martinez",
+        "location": "Denver, CO",
+        "tech_stack": [
+          {"name": "Swift", "years": 4},
+          {"name": "Objective-C", "years": 5},
+          {"name": "iOS Development", "years": 6}
+        ],
+        "interests": "Mobile Development",
+        "goal": "Create innovative mobile apps for iOS",
+        "idea": "Develop an AI-powered personal finance app"
+      },
+      {
+        "name": "Henry Wilson",
+        "location": "Los Angeles, CA",
+        "tech_stack": [
+          {"name": "PHP", "years": 7},
+          {"name": "Laravel", "years": 5},
+          {"name": "MySQL", "years": 6}
+        ],
+        "interests": "Web Development",
+        "goal": "Build secure and efficient web applications",
+        "idea": "Create a SaaS platform for e-commerce"
+      },
+      {
+        "name": "Isabella Brown",
+        "location": "Portland, OR",
+        "tech_stack": [
+          {"name": "JavaScript", "years": 4},
+          {"name": "Vue.js", "years": 3},
+          {"name": "Firebase", "years": 2}
+        ],
+        "interests": "Front-End Development",
+        "goal": "Design and implement user-friendly interfaces",
+        "idea": "Build a real-time chat application"
+      },
+      {
+        "name": "Jack Robinson",
+        "location": "San Diego, CA",
+        "tech_stack": [
+          {"name": "Python", "years": 6},
+          {"name": "Flask", "years": 4},
+          {"name": "PostgreSQL", "years": 5}
+        ],
+        "interests": "Back-End Development",
+        "goal": "Develop robust and scalable server-side applications",
+        "idea": "Create an API-first content platform"
+      },
+      {
+        "name": "Karen Scott",
+        "location": "Miami, FL",
+        "tech_stack": [
+          {"name": "JavaScript", "years": 5},
+          {"name": "Angular", "years": 4},
+          {"name": "Node.js", "years": 3}
+        ],
+        "interests": "Web Development",
+        "goal": "Implement dynamic web applications",
+        "idea": "Develop a progressive web app for social networking"
+      },
+      {
+        "name": "Liam Harris",
+        "location": "Atlanta, GA",
+        "tech_stack": [
+          {"name": "Python", "years": 4},
+          {"name": "TensorFlow", "years": 2},
+          {"name": "Keras", "years": 2}
+        ],
+        "interests": "Machine Learning",
+        "goal": "Build and deploy machine learning models",
+        "idea": "Create a predictive analytics platform"
+      },
+      {
+        "name": "Mia Walker",
+        "location": "Phoenix, AZ",
+        "tech_stack": [
+          {"name": "Java", "years": 6},
+          {"name": "Spring Boot", "years": 4},
+          {"name": "Hibernate", "years": 5}
+        ],
+        "interests": "Back-End Development",
+        "goal": "Optimize and enhance server-side performance",
+        "idea": "Build a high-performance web server for real-time data processing"
+      },
+      {
+        "name": "Noah Adams",
+        "location": "Dallas, TX",
+        "tech_stack": [
+          {"name": "JavaScript", "years": 4},
+          {"name": "React", "years": 3},
+          {"name": "Redux", "years": 2}
+        ],
+        "interests": "Front-End Development",
+        "goal": "Create responsive and scalable front-end solutions",
+        "idea": "Develop a real-time collaborative drawing tool"
+      },
+      {
+        "name": "Olivia Thompson",
+        "location": "Charlotte, NC",
+        "tech_stack": [
+          {"name": "Python", "years": 5},
+          {"name": "Pandas", "years": 3},
+          {"name": "NumPy", "years": 4}
+        ],
+        "interests": "Data Science",
+        "goal": "Analyze and interpret large datasets",
+        "idea": "Create a data visualization tool for business intelligence"
+      },
+      {
+        "name": "Paul Clark",
+        "location": "Houston, TX",
+        "tech_stack": [
+          {"name": "Ruby", "years": 5},
+          {"name": "Rails", "years": 4},
+          {"name": "PostgreSQL", "years": 3}
+        ],
+        "interests": "Full-Stack Development",
+        "goal": "Deliver seamless web applications",
+        "idea": "Develop a project management tool for remote teams"
+      },
+      {
+        "name": "Quinn Lewis",
+        "location": "Minneapolis, MN",
+        "tech_stack": [
+          {"name": "Go", "years": 3},
+          {"name": "MongoDB", "years": 2},
+          {"name": "Docker", "years": 2}
+        ],
+        "interests": "Back-End Development",
+        "goal": "Create highly performant server-side solutions",
+        "idea": "Build a distributed messaging system for IoT"
+      },
+      {
+        "name": "Rachel King",
+        "location": "Philadelphia, PA",
+        "tech_stack": [
+          {"name": "C#", "years": 5},
+          {"name": ".NET", "years": 4},
+          {"name": "SQL Server", "years": 3}
+        ],
+        "interests": "Software Architecture",
+        "goal": "Design and implement scalable software solutions",
+        "idea": "Develop a cloud-native CRM system"
+      },
+      {
+        "name": "Samuel Perez",
+        "location": "Las Vegas, NV",
+        "tech_stack": [
+          {"name": "Java", "years": 5},
+          {"name": "Android", "years": 4},
+          {"name": "Kotlin", "years": 3}
+        ],
+        "interests": "Mobile Development",
+        "goal": "Create innovative Android applications",
+        "idea": "Develop a location-based social app"
+      },
+      {
+        "name": "Tina Moore",
+        "location": "San Antonio, TX",
+        "tech_stack": [
+          {"name": "JavaScript", "years": 4},
+          {"name": "Node.js", "years": 3},
+          {"name": "Express", "years": 2}
+        ],
+        "interests": "Back-End Development",
+        "goal": "Build and maintain efficient server-side code",
+        "idea": "Create a microservices architecture for online learning"
+      },
+      {
+        "name": "Emma Taylor",
+        "location": "New York, NY",
+        "tech_stack": [
+          {"name": "HTML", "years": 1},
+          {"name": "CSS", "years": 1}
+        ],
+        "interests": "Web Design",
+        "goal": "",
+        "idea": ""
+      },
+      {
+        "name": "Lucas Anderson",
+        "location": "San Francisco, CA",
+        "tech_stack": [
+          {"name": "Python", "years": 2}
+        ],
+        "interests": "Data Analysis",
+        "goal": "",
+        "idea": ""
+      },
+      {
+        "name": "Sophia Martinez",
+        "location": "Los Angeles, CA",
+        "tech_stack": [
+          {"name": "Java", "years": 1}
+        ],
+        "interests": "Software Development",
+        "goal": "",
+        "idea": ""
+      },
+      {
+        "name": "Aiden Brown",
+        "location": "Seattle, WA",
+        "tech_stack": [
+          {"name": "JavaScript", "years": 1},
+          {"name": "React", "years": 1}
+        ],
+        "interests": "Front-End Development",
+        "goal": "",
+        "idea": ""
+      },
+      {
+        "name": "Olivia Davis",
+        "location": "Austin, TX",
+        "tech_stack": [
+          {"name": "PHP", "years": 1},
+          {"name": "MySQL", "years": 1}
+        ],
+        "interests": "Web Development",
+        "goal": "",
+        "idea": ""
+      },
+      {
+        "name": "Liam Wilson",
+        "location": "Chicago, IL",
+        "tech_stack": [
+          {"name": "C++", "years": 1}
+        ],
+        "interests": "Game Development",
+        "goal": "",
+        "idea": ""
+      },
+      {
+        "name": "Ava Harris",
+        "location": "Boston, MA",
+        "tech_stack": [
+          {"name": "Python", "years": 1},
+          {"name": "TensorFlow", "years": 1}
+        ],
+        "interests": "Machine Learning",
+        "goal": "",
+        "idea": ""
+      },
+      {
+        "name": "Mason Clark",
+        "location": "Denver, CO",
+        "tech_stack": [
+          {"name": "Ruby", "years": 1}
+        ],
+        "interests": "Back-End Development",
+        "goal": "",
+        "idea": ""
+      },
+      {
+        "name": "Isabella Lee",
+        "location": "Portland, OR",
+        "tech_stack": [
+          {"name": "JavaScript", "years": 2}
+        ],
+        "interests": "Web Development",
+        "goal": "",
+        "idea": ""
+      },
+      {
+        "name": "Ethan Young",
+        "location": "Miami, FL",
+        "tech_stack": [
+          {"name": "Swift", "years": 1},
+          {"name": "iOS Development", "years": 1}
+        ],
+        "interests": "Mobile Development",
+        "goal": "",
+        "idea": ""
+      }
+    ]
+  }
+  

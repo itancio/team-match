@@ -24,19 +24,9 @@ import {
   import LogoutIcon from '@mui/icons-material/Logout';
   
   import React from "react"
-  
-  // import {
-  //   SignedIn, 
-  //   SignInButton,
-  //   SignedOut,
-  //   SignOutButton, 
-  //   UserButton
-  // } from "@clerk/nextjs"
-  // import {useUser} from '@clerk/nextjs'
-  
   import Image from "next/image";
 
-  // Color Palettes
+// Color Palettes
 const cyan = '#aceef3'
 const coral = '#ff7077'
 const rose = '#ffe9e4'
@@ -44,7 +34,7 @@ const orange = '#ffb067'
 const darkBlue = '#1280b3'
 const lightGray = '#f7f7f8'
 const gray = '#ebeced'
-const torquoise = '#33877c'
+const green = '#33877c'
 
   
   export const Header = () => {
@@ -64,13 +54,15 @@ const torquoise = '#33877c'
               style={{flexGrow: 2}}
             >
               <Button href='/' variant="text">
-                <Image 
+                {/* This is for the logo image */}
+                {/* <Image 
                   alt='logo' 
-                  // src='/images/logo.png' 
+                  src='/images/logo.png' 
                   width={32} 
                   height={32}
-                />
-                <Typography variant='h6' color='white' paddingLeft={2} sx={{fontWeight: '600'}}>Rate My Professor</Typography>
+                /> */}
+
+                <Typography variant='h6' color='white' paddingLeft={2} sx={{fontWeight: '600'}}>TEAM MATCH</Typography>
               </Button>
             </Box>
         

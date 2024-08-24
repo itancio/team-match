@@ -7,11 +7,13 @@ import {
   Container,
   Image,
   Grid,
+  Paper,
   Stack,
   TextField,
   Typography,
 } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send';
+import Header from '@/components/Header'
 
 
 // Color Palettes
@@ -22,8 +24,8 @@ const orange = '#ffb067'
 const darkBlue = '#1280b3'
 const lightGray = '#f7f7f8'
 const gray = '#ebeced'
-const torquoise = '#33877c'
-const green = '#41837B'
+const green = '#33877c'
+
 
 
 
@@ -33,7 +35,8 @@ export default function Home() {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: `Hi, I'm the Rate My Professor support assistant! How can I help you today${username}?`
+      content: `Hi${username}, I'm the Team Match support assistant!
+        How can I help you today?`
     }
   ]);
   const messagesEndRef = useRef(null);
@@ -94,103 +97,139 @@ export default function Home() {
             })
 
             return reader.read().then(processText)    // Continue reading the next chunk of the response
-        })
+        }) 
     })
+    console.log("messages: ", messages)
   }
+
+  const [result, setResult] = useState('')
+
+  function parseMessage(msg) {
+    const keyword = "here are my recommendations"
+    if (msg.role === 'assistant' && msg.content.toLowerCase().includes(keyword)) {
+      // setResult(() => {msg.pop()})
+      return "DISPLAY THIS IN A DIFFERENT WAY "
+    }
+    console.log("message: ", msg)
+    return msg.content
+  }
+
+  const Hero = () => {
+    return (
+      <Grid item width='480px' py={5}>
+        <Stack direction='column' alignItems='center'>
+          <Typography variant='h2'color={coral} sx={{textAlign: 'center', fontWeight: 600}}>JOIN THE DREAM TEAM</Typography>
+          <Box variant='h6' color={green} sx={{textAlign: 'center', px: 4, }}>
+          Great things happen when the right minds come together. 
+          Build something amazing together!
+          </Box>
+
+          <Box
+            direction='column'
+            component='img'
+            sx={{
+              maxHeight: 260,
+              maxWidth: 420,
+              borderRadius: 8,
+              my: 3,
+            }}
+            src='/images/prof.png'
+          />
+        </Stack>
+      </Grid> 
+  )}
 
   return ( 
     <Container sx={{
       width:'100vw',
       height:'100vh',
       display:'flex ',
-      backgroundColor: green,
+      justifyContent:'center',
     }}
     >
-      <Grid container justifyContent='center' padding={20}>
-        <Grid item>
-          <Stack direction='column' alignItems='center'>
-            <Typography variant='h2'color={coral}>PERFECT MATCHING</Typography>
-            <Typography variant='h2'>with the right mentor</Typography>
-            <Typography padding={1}>with the right mentor</Typography>
-            <Box
-              direction='column'
-              component='img'
-              sx={{
-                maxHeight: 260,
-                maxWidth: 420,
-                borderRadius: 8,
-                my: 3,
-              }}
-              src='/images/prof.png'
-            />
-          </Stack>
-        </Grid>
+      <Header />
 
-        {/* This is the chat interface */}
-        <Grid item>
-          <Stack
-            p={1}
-            spacing={2}
-            direction='column'
-            width='22rem'
-            height='40rem'
-            // border='1px solid #fff'
-            borderRadius='16px'
-            backgroundColor='white'
-            boxShadow={2}
-          >
+      <Container display='flex' direction='column'>
+        <Grid container display='flex' justifyContent='space-around' py={20}>
+
+          <Hero />
+          
+          {/* This is the chat interface */}
+          <Grid item>
             <Stack
+              p={1}
+              spacing={2}
               direction='column'
-              flexGrow={2}
-              overflow='auto'
-              maxHeight='100%'
+              width='22rem'
+              height='40rem'
+              // border='1px solid #fff'
+              borderRadius='16px'
+              backgroundColor='white'
+              boxShadow={2}
             >
-
-              {
-                messages?.map( (message, index) => (
-                  <Box
-                    p={1}
-                    key={index}
-                    display='flex'
-                    justifyContent={message.role === 'assistant'? 'flex-start' : 'flex-end'}
-                    color={message.role === 'assistant'? 'black' : 'white'}
-                  >
-                    <Box
-                      bgcolor={message.role === 'assistant' ? lightGray : gray}
-                      color={message.role === 'assistant' ? 'white' : 'black'}
-                      borderRadius={3}
-                      p={2}
-                      fontSize={12}
-                      maxWidth='92%'
-                    >
-                      {message.content}  
-                    </Box>
-                  </Box>
-                ))
-              }
-            </Stack>
-            <Stack direction='row' spacing={1}>
-              <TextField
-                value={message}
-                label={<Typography color='lightgray'>Enter message</Typography>}
-                fullWidth
-                inputProps={{style: {fontSize: 12}}}     // set input text size
-                onChange={ (e) => setMessage(e.target.value) }
-                onKeyDown={handleKeyPress}
-              />
-              <Button
-                disabled={!message.trim()} 
-                variant='text'
-                sx={{color: coral}}
-                onClick={sendMessage} 
-                endIcon={<SendIcon/>} 
+              <Stack
+                direction='column'
+                flexGrow={2}
+                overflow='auto'
+                maxHeight='100%'
               >
-                send
-              </Button>
+
+                {
+                  messages?.map( (message, index) => (
+                    <Box
+                      p={1}
+                      key={index}
+                      display='flex'
+                      justifyContent={message.role === 'assistant'? 'flex-start' : 'flex-end'}
+                      color={message.role === 'assistant'? green : 'white'}
+                    >
+                      <Box
+                        bgcolor={message.role === 'assistant' ? green : gray}
+                        color={message.role === 'assistant' ? 'white' : 'black'}
+                        borderRadius={3}
+                        p={2}
+                        fontSize={12}
+                        maxWidth='92%'
+                      >
+                        {message.content}
+                      </Box>
+                    </Box>
+                  ))
+                }
+                {/* This is for auto-scrolling */}
+                <Container style={{ marginBottom: 100 }} ref={messagesEndRef} />
+              </Stack>
+              <Stack direction='row' spacing={1}>
+                <TextField
+                  value={message}
+                  label={<Typography color='lightgray'>Enter message</Typography>}
+                  fullWidth
+                  inputProps={{style: {fontSize: 12}}}     // set input text size
+                  onChange={ (e) => setMessage(e.target.value) }
+                  onKeyDown={handleKeyPress}
+                />
+                <Button
+                  disabled={!message.trim()} 
+                  variant='text'
+                  sx={{color: coral}}
+                  onClick={sendMessage} 
+                  endIcon={<SendIcon/>} 
+                >
+                  send
+                </Button>
+              </Stack>
             </Stack>
-          </Stack>
+          </Grid>
+  
         </Grid>
-      </Grid>
+        <Grid container display='flex' justifyContent='center'>
+          <Grid item>
+            <Paper>
+              We will display the results here.
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
     </Container>
   );
 }
