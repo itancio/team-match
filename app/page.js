@@ -133,7 +133,7 @@ export default function Home() {
               borderRadius: 8,
               my: 3,
             }}
-            src='/images/prof.png'
+            src='/images/hero3.png'
           />
         </Stack>
       </Grid> 
