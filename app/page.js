@@ -1,5 +1,6 @@
 'use client'
 
+import re from 'regex'
 import { useState, useEffect, useRef } from "react";
 import {
   Box,
@@ -35,8 +36,8 @@ export default function Home() {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: `Hi${username}, I'm the Team Match support assistant!
-        How can I help you today?`
+      content: `<message> Hi${username}, I'm the Team Match support assistant!
+        How can I help you today? </message>`
     }
   ]);
   const messagesEndRef = useRef(null);
@@ -99,19 +100,23 @@ export default function Home() {
             return reader.read().then(processText)    // Continue reading the next chunk of the response
         }) 
     })
-    console.log("messages: ", messages)
   }
 
   const [result, setResult] = useState('')
 
-  function parseMessage(msg) {
-    const keyword = "here are my recommendations"
-    if (msg.role === 'assistant' && msg.content.toLowerCase().includes(keyword)) {
-      // setResult(() => {msg.pop()})
-      return "DISPLAY THIS IN A DIFFERENT WAY "
+  function parseMessage({role, content}) {
+    const messagePattern = /<message>([\s\S]*?)<\/message>/;
+    const recommendationPattern = /<recommendation>([\s\S]*?)<\/recommendation>/;
+
+    const message = content.match(messagePattern)?.[1] || '';
+    const recommendation = content.match(recommendationPattern)?.[1] || '';
+
+    if (role === 'assistant') {
+      console.log('assistant response: ', content)
+
+      return message || 'I\'m sorry, I couldn\'t understand your question. Please try again.'
     }
-    console.log("message: ", msg)
-    return msg.content
+    return content
   }
 
   const Hero = () => {
@@ -191,7 +196,7 @@ export default function Home() {
                         fontSize={12}
                         maxWidth='92%'
                       >
-                        {message.content}
+                        {parseMessage(message)}
                       </Box>
                     </Box>
                   ))
