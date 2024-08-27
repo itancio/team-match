@@ -1,6 +1,5 @@
 'use client'
 
-import re from 'regex'
 import { useState, useEffect, useRef } from "react";
 import {
   Box,
@@ -34,7 +33,7 @@ export default function Home() {
   // const {isSignedIn, user} =useUser()
   const username = ""
   const [message, setMessage] = useState('');
-  const [recommendations, setRecommendations] = useState('');
+  const [recommendations, setRecommendations] = useState(null);
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -57,9 +56,18 @@ export default function Home() {
     const {role, content } = messages[messages.length - 1];
     if (role === 'assistant') {
       const recommendationPattern = /<recommendation>([\s\S]*?)<\/recommendation>/;
-      const recommendation = content.match(recommendationPattern)?.[1] || '';
+      const recommendationString = content.match(recommendationPattern)?.[1] || '';
 
-      setRecommendations(recommendation)
+      if (recommendationString) {         // If there are recommendations in the message
+        try {
+          const recommendation = JSON.parse(recommendationString.trim());
+          setRecommendations(() => recommendation.candidates || null)
+        }
+        catch (err) {
+          console.error('Error parsing JSON:', err)
+        }
+      } 
+      
     }
 
   }, [messages]);
@@ -237,7 +245,12 @@ export default function Home() {
           <Grid item>
             <Paper>
               We will display the results here.
-              Recommendations: {recommendations}
+              Recommendations: {recommendations?.map((candidate, index) => (
+                <Box key={index} p={1} sx={{border: '1px solid #ccc'}}>
+                  <Typography variant='subtitle2'>{candidate.name}</Typography>
+                  <Typography variant='body2'>{candidate.location}</Typography>
+                </Box>
+              ))}
             </Paper>
           </Grid>
         </Grid>
