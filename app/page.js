@@ -26,24 +26,18 @@ const lightGray = '#f7f7f8'
 const gray = '#ebeced'
 const green = '#33877c'
 
-const recommendationCandidates = [
+const sample = [
   {
-    "name": "Bob Smith",
-    "location": "San Francisco, CA",
-    "tech_stacks": ["JavaScript: 6 years", "React: 4 years", "Node.js: 5 years"],
-    "comment": "Bob has extensive experience in JavaScript and React, making him a strong candidate for building responsive and dynamic user interfaces."
+    "name": "John Doe",
+    "location": "City, State",
+    "tech_stacks": ["techName1: x years", "techName2: x years"],
+    "comment": "John has extensive experience in tech1 and tech2, making him a strong candidate for building responsive and dynamic user interfaces."
   },
   {
-    "name": "Noah Adams",
-    "location": "Dallas, TX",
-    "tech_stacks": ["JavaScript: 4 years", "React: 3 years", "Redux: 2 years"],
-    "comment": "Noah has solid experience in React and JavaScript, which aligns well with your goal of creating responsive and scalable front-end solutions."
-  },
-  {
-    "name": "Aiden Brown",
-    "location": "Seattle, WA",
-    "tech_stacks": ["JavaScript: 1 year", "React: 1 year"],
-    "comment": "Although Aiden has less experience, he is eager to grow in React development and could be a potential fit for simpler tasks."
+    "name": "Jane Roe",
+    "location": "City2, OtherState",
+    "tech_stacks": ["techName1: x years", "techName2: x years"],
+    "comment": "Jane has solid experience in tech1 and tech2"
   }
 ]
 
@@ -52,7 +46,7 @@ export default function Home() {
   // const {isSignedIn, user} =useUser()
   const username = ""
   const [message, setMessage] = useState('');
-  const [recommendations, setRecommendations] = useState(recommendationCandidates);
+  const [recommendations, setRecommendations] = useState(null);
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -65,7 +59,6 @@ export default function Home() {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
-
 
 
   useEffect(() => {
@@ -171,7 +164,7 @@ export default function Home() {
               borderRadius: 8,
               my: 3,
             }}
-            src='/images/hero3.png'
+            src='/images/hero2.png'
           />
         </Stack>
       </Grid> 
