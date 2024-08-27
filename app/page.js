@@ -33,6 +33,8 @@ const green = '#33877c'
 export default function Home() {
   // const {isSignedIn, user} =useUser()
   const username = ""
+  const [message, setMessage] = useState('');
+  const [recommendations, setRecommendations] = useState('');
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -46,8 +48,20 @@ export default function Home() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+
+
   useEffect(() => {
     scrollToBottom();
+
+    // Parse recommendations from the messages
+    const {role, content } = messages[messages.length - 1];
+    if (role === 'assistant') {
+      const recommendationPattern = /<recommendation>([\s\S]*?)<\/recommendation>/;
+      const recommendation = content.match(recommendationPattern)?.[1] || '';
+
+      setRecommendations(recommendation)
+    }
+
   }, [messages]);
 
   const handleKeyPress = (event) => {
@@ -57,7 +71,7 @@ export default function Home() {
     }
   };
 
-  const [message, setMessage] = useState('');
+  
   const sendMessage = async () => {
     setMessages((messages) => [
       ...messages,
@@ -102,21 +116,13 @@ export default function Home() {
     })
   }
 
-  const [result, setResult] = useState('')
-
-  function parseMessage({role, content}) {
+  function parseMessages({role, content}) {
     const messagePattern = /<message>([\s\S]*?)<\/message>/;
-    const recommendationPattern = /<recommendation>([\s\S]*?)<\/recommendation>/;
-
     const message = content.match(messagePattern)?.[1] || '';
-    const recommendation = content.match(recommendationPattern)?.[1] || '';
-
-    if (role === 'assistant') {
-      console.log('assistant response: ', content)
-
-      return message || 'I\'m sorry, I couldn\'t understand your question. Please try again.'
-    }
-    return content
+    
+    console.log('content: ', content)
+    
+    return (role === 'assistant')? message || '' : content
   }
 
   const Hero = () => {
@@ -196,7 +202,7 @@ export default function Home() {
                         fontSize={12}
                         maxWidth='92%'
                       >
-                        {parseMessage(message)}
+                        {parseMessages(message)}
                       </Box>
                     </Box>
                   ))
@@ -231,6 +237,7 @@ export default function Home() {
           <Grid item>
             <Paper>
               We will display the results here.
+              Recommendations: {recommendations}
             </Paper>
           </Grid>
         </Grid>
