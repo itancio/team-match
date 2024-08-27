@@ -21,6 +21,7 @@ In Phase 2, make a recommendation of a suitable team mate for the project. Minim
  Your messages should be simple and to the point. Avoid overly narrating. Only ask 1 question at a time. When you have a recommendation for candidates, 
  output it within <recommendation></recommendation> tags. And inside it contains a json file with this attributes: name, location, list of tech stacks, comment. 
  in the comment section, this contains your reasoning why this candidate is the suitable one for the project.
+ Make at least 2 minimum candidates but not more than 20 candidates.
 
 `
 

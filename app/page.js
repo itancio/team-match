@@ -26,7 +26,26 @@ const lightGray = '#f7f7f8'
 const gray = '#ebeced'
 const green = '#33877c'
 
-
+const recommendationCandidates = [
+  {
+    "name": "Bob Smith",
+    "location": "San Francisco, CA",
+    "tech_stacks": ["JavaScript: 6 years", "React: 4 years", "Node.js: 5 years"],
+    "comment": "Bob has extensive experience in JavaScript and React, making him a strong candidate for building responsive and dynamic user interfaces."
+  },
+  {
+    "name": "Noah Adams",
+    "location": "Dallas, TX",
+    "tech_stacks": ["JavaScript: 4 years", "React: 3 years", "Redux: 2 years"],
+    "comment": "Noah has solid experience in React and JavaScript, which aligns well with your goal of creating responsive and scalable front-end solutions."
+  },
+  {
+    "name": "Aiden Brown",
+    "location": "Seattle, WA",
+    "tech_stacks": ["JavaScript: 1 year", "React: 1 year"],
+    "comment": "Although Aiden has less experience, he is eager to grow in React development and could be a potential fit for simpler tasks."
+  }
+]
 
 
 export default function Home() {
@@ -242,17 +261,27 @@ export default function Home() {
   
         </Grid>
         <Grid container display='flex' justifyContent='center'>
-          <Grid item>
-            <Paper>
-              We will display the results here.
-              Recommendations: {recommendations?.map((candidate, index) => (
-                <Box key={index} p={1} sx={{border: '1px solid #ccc'}}>
-                  <Typography variant='subtitle2'>{candidate.name}</Typography>
-                  <Typography variant='body2'>{candidate.location}</Typography>
-                </Box>
-              ))}
-            </Paper>
-          </Grid>
+          {recommendations && recommendations.length > 0 && (
+            <Grid item>
+              <Typography variant='h4' color={coral} gutterBottom>Top {recommendations?.length} Candidates</Typography>
+              <Paper>
+                {recommendations?.map((candidate, index) => (
+                  <Box key={index} p={1} sx={{border: '1px solid #ccc'}}>
+                    <Typography variant='body1'>{candidate.name}</Typography>
+                    <Typography variant='body2'>{candidate.location}</Typography>
+                    <Typography variant='body2'>
+                    { candidate.tech_stacks
+                        .map((stack) => stack.split(':')[0].trim())  // Extract the tech names
+                        .join(', ')  // Join the stack names into a single string
+                    }
+                    </Typography>
+
+                    <Typography variant='body2'>{candidate.comment}</Typography>
+                  </Box>
+                ))}
+              </Paper>
+            </Grid>
+          )}
         </Grid>
       </Container>
     </Container>
