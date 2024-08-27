@@ -52,7 +52,7 @@ export default function Home() {
   // const {isSignedIn, user} =useUser()
   const username = ""
   const [message, setMessage] = useState('');
-  const [recommendations, setRecommendations] = useState(null);
+  const [recommendations, setRecommendations] = useState(recommendationCandidates);
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -147,7 +147,7 @@ export default function Home() {
     const messagePattern = /<message>([\s\S]*?)<\/message>/;
     const message = content.match(messagePattern)?.[1] || '';
     
-    console.log('content: ', content)
+    // console.log('content: ', content)
     
     return (role === 'assistant')? message || '' : content
   }
@@ -264,10 +264,10 @@ export default function Home() {
           {recommendations && recommendations.length > 0 && (
             <Grid item>
               <Typography variant='h4' color={coral} gutterBottom>Top {recommendations?.length} Candidates</Typography>
-              <Paper>
+              <Box p={2}>
                 {recommendations?.map((candidate, index) => (
-                  <Box key={index} p={1} sx={{border: '1px solid #ccc'}}>
-                    <Typography variant='body1'>{candidate.name}</Typography>
+                  <Box key={index} p={2} m={1} sx={{borderRadius: 4, border: '1px solid #ccc', backgroundColor: 'white'}}>
+                    <Typography variant='body1' color={green} fontWeight={700}>{candidate.name}</Typography>
                     <Typography variant='body2'>{candidate.location}</Typography>
                     <Typography variant='body2'>
                     { candidate.tech_stacks
@@ -279,7 +279,7 @@ export default function Home() {
                     <Typography variant='body2'>{candidate.comment}</Typography>
                   </Box>
                 ))}
-              </Paper>
+              </Box>
             </Grid>
           )}
         </Grid>
