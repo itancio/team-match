@@ -41,6 +41,12 @@ const sample = [
   }
 ]
 
+const suggestions = [
+  "Someone who knows front-end",
+  "Need collaborative group",
+  "Looking for partner"
+]
+
 
 export default function Home() {
   // const {isSignedIn, user} =useUser()
@@ -207,22 +213,54 @@ export default function Home() {
 
                 {
                   messages?.map( (message, index) => (
-                    <Box
-                      p={1}
-                      key={index}
-                      display='flex'
-                      justifyContent={message.role === 'assistant'? 'flex-start' : 'flex-end'}
-                      color={message.role === 'assistant'? green : 'white'}
-                    >
+                    <Box>
                       <Box
-                        bgcolor={message.role === 'assistant' ? green : gray}
-                        color={message.role === 'assistant' ? 'white' : 'black'}
-                        borderRadius={3}
-                        p={2}
-                        fontSize={12}
-                        maxWidth='92%'
+                        p={1}
+                        key={index}
+                        display='flex'
+                        justifyContent={message.role === 'assistant'? 'flex-start' : 'flex-end'}
+                        color={message.role === 'assistant'? green : 'white'}
                       >
-                        {parseMessages(message)}
+                        <Box
+                          bgcolor={message.role === 'assistant' ? green : gray}
+                          color={message.role === 'assistant' ? 'white' : 'black'}
+                          borderRadius={3}
+                          p={2}
+                          fontSize={12}
+                          maxWidth='92%'
+                        >
+                          {parseMessages(message)}
+                        </Box>
+                      </Box>
+
+                      <Box position='relative'>
+                        {messages.length === 1 && (
+                          <Box 
+                            position='absolute'
+                            top={380}
+                            bottom={0}
+                            right={0}
+                            left={0}
+                            display='flex' 
+                            flexDirection='column' 
+                            justifyContent='center'
+                          >
+                            {suggestions.map((suggestion, index) => (
+                              <Box key={index}
+                                minWidth={150}
+                                m={1} 
+                                p={2}
+                                sx={{cursor: 'pointer'}}
+                                value={suggestion}
+                                onClick={ () => setMessage(suggestion) }
+                                bgcolor= 'rgba(0, 0, 0, 0.04)'
+                                align='center'
+                              >
+                                <Typography color={green} fontSize={12}>{suggestion}</Typography>
+                              </Box>
+                            ))}
+                          </Box>
+                        )}
                       </Box>
                     </Box>
                   ))
