@@ -13,6 +13,10 @@ import {
   Typography,
 } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send';
+import GroupWorkIcon from '@mui/icons-material/GroupWork';
+import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
+import CircularProgress from '@mui/material/CircularProgress';
 import Header from '@/components/Header'
 
 
@@ -42,9 +46,18 @@ const sample = [
 ]
 
 const suggestions = [
-  "Someone who knows front-end",
-  "Need collaborative group",
-  "Looking for partner"
+  {
+    "title": "Someone who knows front-end",
+    "icon": <CodeRoundedIcon sx={{color: green }}/>,
+  },
+  {
+    "title": "Need collaborative group",
+    "icon": <GroupWorkIcon sx={{color: green }}/>,
+  },
+  {
+    "title": "Looking for partner",
+    "icon": <GroupRoundedIcon sx={{color: green }}/>,
+  }
 ]
 
 
@@ -60,6 +73,7 @@ export default function Home() {
         How can I help you today? </message>`
     }
   ]);
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -99,6 +113,7 @@ export default function Home() {
 
   
   const sendMessage = async () => {
+    setIsLoading(true);
     setMessages((messages) => [
       ...messages,
       {role: 'user', content: message},
@@ -137,6 +152,7 @@ export default function Home() {
               ]
             })
 
+            setIsLoading(false);
             return reader.read().then(processText)    // Continue reading the next chunk of the response
         }) 
     })
@@ -213,10 +229,9 @@ export default function Home() {
 
                 {
                   messages?.map( (message, index) => (
-                    <Box>
+                    <Box key={index}>
                       <Box
                         p={1}
-                        key={index}
                         display='flex'
                         justifyContent={message.role === 'assistant'? 'flex-start' : 'flex-end'}
                         color={message.role === 'assistant'? green : 'white'}
@@ -233,11 +248,12 @@ export default function Home() {
                         </Box>
                       </Box>
 
+                      {/* Display suggestions only in the beginning of the conversation */}
                       <Box position='relative'>
                         {messages.length === 1 && (
                           <Box 
                             position='absolute'
-                            top={380}
+                            top={250}
                             bottom={0}
                             right={0}
                             left={0}
@@ -245,18 +261,20 @@ export default function Home() {
                             flexDirection='column' 
                             justifyContent='center'
                           >
-                            {suggestions.map((suggestion, index) => (
+                            {suggestions.map(({title, icon}, index) => (
                               <Box key={index}
                                 minWidth={150}
                                 m={1} 
                                 p={2}
                                 sx={{cursor: 'pointer'}}
-                                value={suggestion}
-                                onClick={ () => setMessage(suggestion) }
+                                value={title}
+                                onClick={ () => setMessage(title) }
                                 bgcolor= 'rgba(0, 0, 0, 0.04)'
                                 align='center'
                               >
-                                <Typography color={green} fontSize={12}>{suggestion}</Typography>
+                                {icon}
+                                <Typography color={green} fontSize={12}>{title}</Typography>
+                       
                               </Box>
                             ))}
                           </Box>
@@ -265,9 +283,11 @@ export default function Home() {
                     </Box>
                   ))
                 }
+
                 {/* This is for auto-scrolling */}
                 <Container style={{ marginBottom: 100 }} ref={messagesEndRef} />
               </Stack>
+
               <Stack direction='row' spacing={1}>
                 <TextField
                   value={message}
@@ -282,10 +302,8 @@ export default function Home() {
                   variant='text'
                   sx={{color: coral}}
                   onClick={sendMessage} 
-                  endIcon={<SendIcon/>} 
-                >
-                  send
-                </Button>
+                  endIcon={isLoading ? <CircularProgress size={14}/> : <SendIcon/>}
+                />
               </Stack>
             </Stack>
           </Grid>
