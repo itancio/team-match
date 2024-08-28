@@ -99,7 +99,6 @@ export default function Home() {
           console.error('Error parsing JSON:', err)
         }
       } 
-      
     }
 
   }, [messages]);
@@ -129,9 +128,9 @@ export default function Home() {
     }
 
     setMessage('')
-
+    
     // Send the message to the server
-    const response = fetch('/api/chat', params)
+    const response = await fetch('/api/chat', params)
       .then( async (res) => {
         const reader = res.body.getReader()   // Get a reader to read the response body
         const decoder = new TextDecoder()   // Create a decoder to decode the response text
@@ -139,7 +138,11 @@ export default function Home() {
         let result = ''
         return reader.read()
           .then( function processText({done, value}){
-            if (done) { return result }
+            // This is the base case of reading a chunk of text
+            if (done) {
+              setIsLoading(false)
+              return result 
+            }
 
             const text = decoder.decode(value || new Uint8Array(), {stream: true})    // Decode the text
 
@@ -152,7 +155,6 @@ export default function Home() {
               ]
             })
 
-            setIsLoading(false);
             return reader.read().then(processText)    // Continue reading the next chunk of the response
         }) 
     })
@@ -302,7 +304,7 @@ export default function Home() {
                   variant='text'
                   sx={{color: coral}}
                   onClick={sendMessage} 
-                  endIcon={isLoading ? <CircularProgress size={14}/> : <SendIcon/>}
+                  endIcon={isLoading ? <CircularProgress size={16}/> : <SendIcon/>}
                 />
               </Stack>
             </Stack>
